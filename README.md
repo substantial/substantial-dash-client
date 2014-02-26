@@ -31,4 +31,4 @@ Start the auto-reloading dev server at http://0.0.0.0:8000
     
     grunt server
 
-The EAK [Getting Started guide](http://iamstef.net/ember-app-kit/guides/getting-started.html) offers deeper insight into how this Ember.js application is build.
+The EAK [Getting Started guide](http://iamstef.net/ember-app-kit/guides/getting-started.html) offers deeper insight into how this Ember.js application is built.
