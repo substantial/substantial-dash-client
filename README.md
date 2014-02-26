@@ -2,6 +2,8 @@
 
 **An early work-in-progress** to visualize realtime events, statuses, and key performance indicators.
 
+Designed to display data from [Substantial Dash server](https://github.com/substantial/substantial-dash-server).
+
 ## Tech
 
 * [Ember.js](http://emberjs.com): dashboard widgets build as [web components](http://emberjs.com/guides/components/)
