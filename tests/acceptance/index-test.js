@@ -1,7 +1,12 @@
+import ServerListener from 'appkit/models/server-listener';
+
 var App;
 
 module('Acceptances - Index', {
   setup: function(){
+    ServerListener.reopen({
+      serverListenerConnect: sinon.stub()
+    });
     App = startApp();
   },
   teardown: function() {
@@ -9,10 +14,10 @@ module('Acceptances - Index', {
   }
 });
 
-// test('index renders', function(){
-//   expect(1);
+test('index renders', function(){
+  expect(1);
 
-//   visit('/').then(function(){
-//     ok(true);
-//   });
-// });
+  visit('/').then(function(){
+    ok(true);
+  });
+});

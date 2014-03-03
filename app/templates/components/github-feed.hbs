@@ -1,0 +1,14 @@
+<h2>{{title}}</h2>
+
+{{yield}}
+
+{{#each contents}}
+  <p>
+    {{type}} in <a {{bind-attr href=repo.url}}>{{repo.name}}</a><br>
+
+    <img {{bind-attr src=actor.avatar_url}} alt="" width="48" height="48">
+    <a {{bind-attr href=actor.url}}>{{actor.login}}</a>
+  </p>
+{{else}}
+  <p>Nothing happened yet.</p>
+{{/each}}

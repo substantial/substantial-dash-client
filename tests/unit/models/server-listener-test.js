@@ -4,12 +4,14 @@ import ServerListener from 'appkit/models/server-listener';
 
 moduleFor('model:server-listener', "Unit - ServerListener", {
   subject: function() {
-    return ServerListener.create({
-      connect: function() {}
+    var obj = Ember.Object.createWithMixins(ServerListener, {
+      // replace Server-Sent-Event code with a stub
+      serverListenerConnect: sinon.stub()
     });
+    return obj;
   }
 });
 
 test("it exists", function() {
-  ok(this.subject() instanceof ServerListener);
+  ok(!Ember.isEmpty(this.subject().get("serverListenerBaseUrl")));
 });

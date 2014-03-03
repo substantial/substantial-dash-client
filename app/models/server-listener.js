@@ -1,40 +1,52 @@
-var ServerListener = Ember.Object.extend({
+var ServerListener = Ember.Mixin.create({
 
   init: function() {
-    this.connect();
+    this._super();
+    this.serverListenerConnect();
   },
 
-  connect: function() {
+  serverListenerConnect: function() {
     var _this = this;
     var connection = new window.EventSource(
-      this.get("baseUrl") + this.get("uri"),
+      this.get("serverListenerBaseUrl") + this.get("serverListenerUri"),
       { withCredentials: true }
     );
     this.set("connection", connection);
 
-    connection.onopen = function() {};
+    connection.addEventListener('open', function() {
+      Ember.Logger.info('ServerListener Open');
+    }, false);
 
-    connection.onerror = function(error) {
-      Ember.Logger.error('ServerListener Error', error); 
-    };
+    connection.addEventListener('error', function(error) {
+      Ember.Logger.error('ServerListener Error', error);
+    }, false);
 
-    connection.onmessage = function(message) {
+    connection.addEventListener('message', function(message) {
       Ember.Logger.info('ServerListener Received', message);
-      _this.receive(message.data);
-    };
+    }, false);
+
+    // listen on the specific event channel
+    var channel = this.get("channel");
+    if (channel) {
+      connection.addEventListener(channel, function(message) {
+        Ember.Logger.info('ServerListener Received on Channel', channel, message);
+        _this.serverListenerReceive(message.data);
+      }, false);
+    }
   },
 
-  baseUrl: function() {
-    return location.protocol + "//" + location.hostname + ":8001";
+  serverListenerBaseUrl: function() {
+    // FIXME port number hack for development
+    return location.protocol + "//" + location.hostname + ":8001"; 
   }.property(),
 
-  uri: function() {
-    return "/dashboards/broadcast";
-  }.property(),
+  serverListenerUri: function() {
+    var channel = this.get("channel");
+    return "/intakes/" + channel + "/subscribe";
+  }.property("channel"),
 
-  receive: function(data) {
-    var recipient = this.get("recipient");
-    recipient.send("receiveEvent", data);
+  serverListenerReceive: function(data) {
+    this.send("receiveEvent", data);
   }
 
 });

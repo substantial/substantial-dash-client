@@ -12,5 +12,8 @@
   },
   "resolutions": {
     "ember": "~1.4.0"
+  },
+  "devDependencies": {
+    "sinon": "~1.8.2"
   }
 }

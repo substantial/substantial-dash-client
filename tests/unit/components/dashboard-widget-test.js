@@ -3,13 +3,16 @@ import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
 
 var component;
 
-moduleForComponent('dashboard-widget', 'Unit - Dashboard widget component', 
-                   {
-  setup: function() {
-    component = this.subject();
+moduleForComponent('dashboard-widget', 'Unit - Dashboard widget component', {
+  subject: function() {
+    var obj = DashboardWidgetComponent.create({
+      // replace Server-Sent-Event code with a stub
+      serverListenerConnect: sinon.stub()
+    });
+    return obj;
   }
 });
 
-test('Write a test here', function() {
-  ok( true, 'Implement Me' );
+test('it exists', function() {
+  ok(this.subject() instanceof DashboardWidgetComponent);
 });
