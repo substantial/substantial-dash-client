@@ -1,8 +1,48 @@
 /* Put your CSS here */
 html, body {
-    margin: 20px;
+  margin: 20px;
+  background: black;
+  color: white;
+  font-size: 1.5em;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 500;
 }
 
-@keyframes domChanged { from { background: yellow; } }
-@-webkit-keyframes domChanged { from { background: yellow; } }
+p, h1, h2, h3, h4, h5 {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+strong {
+  font-weight: 900;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff9900;
+  text-decoration: underline;
+}
+
+@keyframes domChanged { from { color: black; } }
+@-webkit-keyframes domChanged { from { color: black; } }
 .ember-view { animation: domChanged 1s; -webkit-animation: domChanged 1s; }
