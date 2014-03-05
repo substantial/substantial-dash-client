@@ -16,3 +16,6 @@
 .DS_Store
 Thumbs.db
 /coverage/*
+
+# rubymine
+/.idea
