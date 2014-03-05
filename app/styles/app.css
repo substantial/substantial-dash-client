@@ -3,7 +3,7 @@ html, body {
   margin: 20px;
   background: black;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-family: 'Alegreya Sans', sans-serif;
   font-weight: 500;
 }
@@ -11,6 +11,10 @@ html, body {
 p, h1, h2, h3, h4, h5 {
   padding: 0;
   margin: 0;
+}
+
+p {
+  line-height: 1.2rem;
 }
 
 h1, h2, h3, h4, h5 {
@@ -46,3 +50,28 @@ a:hover {
 @keyframes domChanged { from { color: black; } }
 @-webkit-keyframes domChanged { from { color: black; } }
 .ember-view { animation: domChanged 1s; -webkit-animation: domChanged 1s; }
+
+.flex-grid {
+  display: flex;
+}
+
+.flex-cell {
+  flex: 1;
+}
+
+.details {
+  font-size: 0.7rem;
+  line-height: 0.8rem;
+}
+
+.avatar {
+
+}
+
+.github-event {
+  margin-top: 0.5rem;
+}
+
+.github-avatar {
+  vertical-align: top;
+}

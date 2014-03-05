@@ -12,7 +12,7 @@ var GithubFeedComponent = DashboardWidgetComponent.extend({
       var items = Ember.A(JSON.parse(data));
       var contents = this.get("contents");
       contents.clear();
-      items.slice(0,3).forEach(function(item) {
+      items.slice(0,5).forEach(function(item) {
         Ember.Logger.info(item);
         contents.pushObject(Ember.Object.create(item));
       });

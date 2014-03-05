@@ -8,6 +8,16 @@ Designed to display data from [Substantial Dash server](https://github.com/subst
 
 * [Ember.js](http://emberjs.com): dashboard widgets build as [web components](http://emberjs.com/guides/components/)
 * [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/): streaming dashboard updates
+* [CSS Flexbox](http://css-tricks.com/snippets/css/a-guide-to-flexbox/): grid layout without the hacks
+
+## Browser Support
+
+Current versions of Chrome, Firefox, & Safari all work splendidly.
+
+Internet Explorer is not supported :unamused: because:
+
+* no IE supports HTML5 `EventSource` a.k.a. Server Sent Events (possible solutions: polyfill, switch to WebSockets, or an event-stream-as-a-service such as [Pusher](http://pusher.com/))
+* IE < 10 does not support CSS Flexbox
 
 ## Development
 

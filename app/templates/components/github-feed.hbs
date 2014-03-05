@@ -3,12 +3,18 @@
 {{yield}}
 
 {{#each contents}}
-  <p>
-    {{type}} in <a {{bind-attr href=repo.url}}>{{repo.name}}</a><br>
-
-    <img {{bind-attr src=actor.avatar_url}} alt="" width="48" height="48">
-    <a {{bind-attr href=actor.url}}>{{actor.login}}</a>
-  </p>
+  <div class="flex-grid github-event">
+    <div class="flex-cell" style="flex: 0 0 52px;">
+      <img {{bind-attr src=actor.avatar_url}} alt="" width="48" height="48" class="avatar github-avatar"> 
+    </div>
+    <div class="flex-cell">
+      <p>{{actor.login}} {{github-event-title this}}</p>
+      <p class="details">
+        {{time-ago-in-words created_at}}<br>
+        in <a {{bind-attr href=repo.url}}>{{repo.name}}</a>
+      </p>
+    </div>
+  </div>
 {{else}}
   <p>Nothing happened yet.</p>
 {{/each}}
