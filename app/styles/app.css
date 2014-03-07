@@ -47,9 +47,11 @@ a:hover {
   text-decoration: underline;
 }
 
+/*
 @keyframes domChanged { from { color: black; } }
 @-webkit-keyframes domChanged { from { color: black; } }
 .ember-view { animation: domChanged 1s; -webkit-animation: domChanged 1s; }
+*/
 
 .flex-grid {
   display: flex;
@@ -68,7 +70,7 @@ a:hover {
 
 }
 
-.github-event {
+.feed-event {
   margin-top: 0.5rem;
 }
 
