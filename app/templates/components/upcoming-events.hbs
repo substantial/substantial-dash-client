@@ -1,0 +1,14 @@
+<h2>{{title}}</h2>
+
+{{yield}}
+
+{{#each contents}}
+  <div class="feed-event">
+    <p>{{summary}}</p>
+    <p class="details">
+      {{#view "interval-rerender" tagName="time"}}{{time-ago-in-words starts_at}}{{/view}}
+      {{#if location}}<br>at {{location}}{{/if}}</p>
+  </div>
+{{else}}
+  <p>None.</p>
+{{/each}}
