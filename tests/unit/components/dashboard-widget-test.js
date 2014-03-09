@@ -3,6 +3,8 @@ import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
 
 moduleForComponent('dashboard-widget', 'Unit - Dashboard widget component', {
   subject: function() {
+
+    // Mock Faye/bayeux subscribe process; avoid network calls.
     var bayeuxStub = { subscribe: Ember.K };
     var subscribeStub = sinon.stub(bayeuxStub, 'subscribe', function() {
       var subscribedStub = { then: Ember.K };
@@ -12,7 +14,7 @@ moduleForComponent('dashboard-widget', 'Unit - Dashboard widget component', {
 
     var obj = DashboardWidgetComponent.create({
       bayeux: bayeuxStub,
-      channel: '/awesome-metrics'
+      channel: 'awesome-metrics'
     });
     return obj;
   }
@@ -22,6 +24,10 @@ test('it exists', function() {
   ok(this.subject() instanceof DashboardWidgetComponent);
 });
 
-test('subscribes to its channel', function() {
+test('it subscribes using #bayeux', function() {
   ok(this.subject().get('bayeux').subscribe.calledOnce);
+});
+
+test('it subscribes to #channel', function() {
+  ok(this.subject().get('bayeux').subscribe.calledWith("/awesome-metrics"));
 });
