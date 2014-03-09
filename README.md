@@ -7,7 +7,7 @@ Designed to display data from [Substantial Dash server](https://github.com/subst
 ## Tech
 
 * [Ember.js](http://emberjs.com): dashboard widgets build as [web components](http://emberjs.com/guides/components/)
-* [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/): streaming dashboard updates
+* [Bayeux/Faye events](http://faye.jcoglan.com): publish & subscribe to data streams
 * [CSS Flexbox](http://css-tricks.com/snippets/css/a-guide-to-flexbox/): grid layout without the hacks
 
 ## Browser Support

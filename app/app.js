@@ -10,4 +10,14 @@ var App = Ember.Application.extend({
   Resolver: Resolver['default']
 });
 
+App.initializer({
+  name: "faye-client",
+
+  initialize: function(container, application) {
+    var client = new window.Faye.Client("http://0.0.0.0:8001/bayeux");
+    application.register('faye-client:main', client, { instantiate: false });
+    application.inject('controller', 'bayeux', 'faye-client:main');
+  }
+});
+
 export default App;
