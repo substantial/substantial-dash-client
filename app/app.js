@@ -16,7 +16,10 @@ App.initializer({
   initialize: function(container, application) {
     var client = new window.Faye.Client("http://0.0.0.0:8001/bayeux");
     application.register('faye-client:main', client, { instantiate: false });
+    // Controllers have direct Pub/Sub access view their #bayeux property.
     application.inject('controller', 'bayeux', 'faye-client:main');
+    // Dashboard Widgets are web components; give them Pub/Sub access too.
+    application.inject('component', 'bayeux', 'faye-client:main');
   }
 });
 

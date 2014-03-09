@@ -1,8 +1,11 @@
 var DashboardWidgetComponent = Ember.Component.extend({
   title: null,
   channel: null,
+  
+  // Injected from the Application initializer.
   bayeux: null,
-  subscription: null,
+  // Internal record of the current bayeux#subscribe.
+  _subscription: null,
 
   init: function() {
     this._super();
@@ -21,14 +24,14 @@ var DashboardWidgetComponent = Ember.Component.extend({
       Ember.Logger.error("A `channel` is required. Did you pass it into the component?");
       return;
     }
-    var subscription = bayeux.subscribe('/'+channel, function(message) {
+    var _subscription = bayeux.subscribe('/'+channel, function(message) {
       _this.send("receiveEvent", message);
     }).then(function () {
       Ember.Logger.debug("bayeux subscribed to `/"+channel+"`");
     }, function(error) {
       Ember.Logger.error("bayeux subscribe failed to `/"+channel+"`", error);
     });
-    this.set("subscription", subscription);
+    this.set("_subscription", _subscription);
   }
 });
 
