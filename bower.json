@@ -10,7 +10,7 @@
     "ic-ajax": "~0.3.0",
     "ember-testing-httpRespond": "~0.1.1",
     "moment": "~2.5.1",
-    "faye": "git@github.com:substantial/faye-browser.git#~1.0.1"
+    "faye": "git://github.com/substantial/faye-browser.git#~1.0.1"
   },
   "resolutions": {
     "ember": "~1.4.0"
