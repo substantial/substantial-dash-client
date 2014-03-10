@@ -85,6 +85,10 @@ a:hover {
   @include flex(1);
 }
 
+.flex-cell-avatar {
+  @include flex(0 0 52px);
+}
+
 .details {
   font-size: 0.7rem;
   line-height: 0.8rem;
