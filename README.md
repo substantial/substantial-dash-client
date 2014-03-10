@@ -12,12 +12,9 @@ Designed to display data from [Substantial Dash server](https://github.com/subst
 
 ## Browser Support
 
-Current versions of Chrome, Firefox, & Safari all work splendidly.
+Current versions of Chrome, Firefox, Safari, & IE (should) all work fine.
 
-Internet Explorer is not supported :unamused: because:
-
-* no IE supports HTML5 `EventSource` a.k.a. Server Sent Events (possible solutions: polyfill, switch to WebSockets, or an event-stream-as-a-service such as [Pusher](http://pusher.com/))
-* IE < 10 does not support CSS Flexbox
+Older browsers that do not support CSS Flexbox will not display the dashboard layout correctly.
 
 ## Development
 
