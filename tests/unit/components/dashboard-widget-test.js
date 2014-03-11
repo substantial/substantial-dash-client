@@ -1,19 +1,11 @@
 import { test , moduleForComponent } from 'appkit/tests/helpers/module-for';
+import BayeuxStub from 'appkit/tests/helpers/bayeux-stub';
 import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
 
 moduleForComponent('dashboard-widget', 'Unit - Dashboard widget component', {
   subject: function() {
-
-    // Mock Faye/bayeux subscribe process; avoid network calls.
-    var bayeuxStub = { subscribe: Ember.K };
-    var subscribeStub = sinon.stub(bayeuxStub, 'subscribe', function() {
-      var subscribedStub = { then: Ember.K };
-      sinon.stub(subscribedStub, 'then');
-      return subscribedStub;
-    });
-
     var obj = DashboardWidgetComponent.create({
-      bayeux: bayeuxStub,
+      bayeux: new BayeuxStub(),
       channel: 'awesome-metrics'
     });
     return obj;
