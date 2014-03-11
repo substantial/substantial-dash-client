@@ -1,4 +1,4 @@
-# Substantial Dash client
+# Substantial Dash client [![Build Status](https://travis-ci.org/substantial/substantial-dash-client.png)](https://travis-ci.org/substantial/substantial-dash-client)
 
 **An early work-in-progress** to visualize realtime events, statuses, and key performance indicators.
 
