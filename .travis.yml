@@ -7,4 +7,4 @@ before_script:
   - bower install
 notifications:
   flowdock:
-    secure: fCuPZ13YwGzvVoCuJdjepV0vWc/3gwvqPlHmsap8I5tLfX5jpcXLr1fNHTYJ9qmgomnBpD/8GCjIPFimjuYNTZU4b8RAM7QkTyJmXicZZqAvdy7pmUNz1K0jBO87wsvCELwHnj17lRmMoKD2wR7MeEwjnZqL3SOrf3bTvRVBEeg=
+    secure: qZQBHM1/DmyxLjWX1h9p/R+nhhBB9S2HYmnrrwhQZRETkDSMANKBAAsmBwrO6XdhxIZUIHWL7I3DtTw9vvZhN/SkcJstx8jwVJFycKN1bDlOGQN4e3MxbSRmLnB0i3/Gi4JaQ5C5Kd/EOJhhXncEJSujYHkg3EzYvj1c/oHQJTg=
