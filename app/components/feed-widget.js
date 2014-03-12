@@ -14,7 +14,7 @@ var FeedWidgetComponent = DashboardWidgetComponent.extend({
 
   init: function() {
     this._super();
-    this.set("contents", Ember.A());
+    this.set("contents", []);
   },
 
   actions: {
@@ -30,19 +30,25 @@ var FeedWidgetComponent = DashboardWidgetComponent.extend({
   updateContents: function(data) {
     var items = Ember.isArray(data) ? data : JSON.parse(data);
     var contents = this.get("contents");
+    var newContents = [];
     var itemsLimit = this.get("itemsLimit");
     var itemIdProperty = this.get("itemIdProperty");
 
+    // collect new items
     items.forEach(function(item) {
       var id = Ember.get(item, itemIdProperty);
       if (Ember.isEmpty(id) || !contents.isAny(itemIdProperty, id)) {
-        contents.pushObject(Ember.Object.create(item));
+        newContents.pushObject(Ember.Object.create(item));
       }
     });
 
+    // prepend the new items onto the contents
+    contents.unshiftObjects(newContents);
+
+    // slice off items beyond the limit
     var length = contents.get("length");
     if (length > itemsLimit) {
-      contents.removeAt(5, length-5);
+      contents.removeAt(5, length-1);
     }
   }
 
