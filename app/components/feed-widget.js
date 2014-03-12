@@ -48,7 +48,7 @@ var FeedWidgetComponent = DashboardWidgetComponent.extend({
     // slice off items beyond the limit
     var length = contents.get("length");
     if (length > itemsLimit) {
-      contents.removeAt(5, length-1);
+      contents.removeAt(5, length-5);
     }
   }
 
