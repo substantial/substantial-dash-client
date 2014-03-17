@@ -1,0 +1,10 @@
+<h2>{{title}}</h2>
+
+{{yield}}
+
+{{#each contents}}
+  <div class="feed-event">
+    <p>{{name}}: {{formatted-as-dollars dollar_value}} (weighted: {{weighted-deal-value dollar_value deal_probability}})</p>
+{{else}}
+  <p>No data</p>
+{{/each}}
