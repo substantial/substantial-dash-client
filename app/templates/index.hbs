@@ -1,3 +1,7 @@
+{{#if auth}}
+
+<p class="details">Authenticated as {{auth.userName}}</p>
+  
 <div class="flex-grid">
   <div class="flex-cell">
     {{github-feed title="Code" channel="github-org-feed-substantial-sf"}}
@@ -9,3 +13,10 @@
   	{{pipedrive-deals title="Sales" channel="pipedrive-deals"}}
   </div>
 </div>
+
+{{else}}
+
+<a href="http://0.0.0.0:8001/auth/google_apps/init">Login</a>
+
+{{/if}}
+
