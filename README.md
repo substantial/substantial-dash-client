@@ -32,6 +32,8 @@ Built with EAK, [Ember App Kit](http://stefanpenner.github.io/ember-app-kit/)
     cd substantial-dash-client/
     npm install
 
+Configure your specific Dash's environment with *config/environment.js* and child *config/environments/\**. The default config should work for local development; each production Dash will require it's own unique *config/environments/production.js*.
+
 Run the test suite:
 
     grunt test

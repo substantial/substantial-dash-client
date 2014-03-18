@@ -6,7 +6,7 @@ var FayeClientInitializer = {
     var auth = container.lookup('auth:main');
     // Skip Faye/bayeux setup unless authentication has been registered.
     if (!Ember.isEmpty(auth)) {
-      var client = new window.Faye.Client("http://0.0.0.0:8001/bayeux");
+      var client = new window.Faye.Client(window.ENV.api_base_url + "/bayeux");
       // Add API key to outgoing messages.
       client.addExtension({
         outgoing: function(message, callback) {

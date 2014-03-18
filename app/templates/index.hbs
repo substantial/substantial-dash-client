@@ -1,4 +1,4 @@
-{{#if auth}}
+{{#if auth.apiKey}}
 
 <p class="details">Authenticated as {{auth.userName}}</p>
   
@@ -19,7 +19,7 @@
 
 {{else}}
 
-<a href="http://0.0.0.0:8001/auth/google_apps/init">Login</a>
+{{render "login"}}
 
 {{/if}}
 
