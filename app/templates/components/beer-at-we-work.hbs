@@ -1,0 +1,11 @@
+<h2>{{title}}</h2>
+
+{{yield}}
+
+{{#each contents}}
+  <div class="feed-event">
+    <p>{{floor}}:  {{name}}</p>
+  </div>
+{{else}}
+  <p>Thirsty for data</p>
+{{/each}}
