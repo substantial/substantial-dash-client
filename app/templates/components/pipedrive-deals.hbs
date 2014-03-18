@@ -4,7 +4,8 @@
 
 {{#each contents}}
   <div class="feed-event">
-    <p>{{name}}: {{formatted-as-dollars dollar_value}} (weighted: {{weighted-deal-value dollar_value deal_probability}})</p>
+    <p>{{name}}</p>
+    <p>{{#each datasets}} {{name}}: {{formatted-as-dollars dollar_value}} ({{deal_count}}) {{/each}}</p>
 {{else}}
   <p>No data</p>
 {{/each}}
