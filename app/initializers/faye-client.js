@@ -10,8 +10,7 @@ var FayeClientInitializer = {
       // Add API key to outgoing messages.
       client.addExtension({
         outgoing: function(message, callback) {
-          if (message.channel !== '/meta/subscribe' && 
-              message.channel !== '/meta/publish') {
+          if (message.channel !== '/meta/subscribe') {
             return callback(message);
           }
           message.ext = message.ext || {};

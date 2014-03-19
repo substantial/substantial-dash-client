@@ -8,7 +8,7 @@ var AuthenticationInitializer = {
     var url = window.purl(location.href);
     var apiKey = url.param('api_key');
     var userName = url.param('user_name');
-
+    
     if (Ember.isEmpty(apiKey)) {
       apiKey = Cookies.getItem('api_key');
       userName = Cookies.getItem('user_name');
@@ -27,7 +27,7 @@ var AuthenticationInitializer = {
       var authenticatedPath = url.attr('path') + '#' + url.attr('fragment');
       window.history.replaceState("authenticated", "", authenticatedPath);
 
-      Ember.Logger.debug('App.initializer authenticated: '+auth.get('name'));
+      Ember.Logger.debug('App.initializer authenticated: '+auth.get('userName'));
     }
   }
 };
