@@ -19,7 +19,3 @@ test('it exists', function() {
 test('it subscribes using #bayeux', function() {
   ok(this.subject().get('bayeux').subscribe.calledOnce);
 });
-
-test('it subscribes to #channel', function() {
-  ok(this.subject().get('bayeux').subscribe.calledWith("/awesome-metrics"));
-});

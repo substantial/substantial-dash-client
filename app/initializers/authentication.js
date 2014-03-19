@@ -23,6 +23,7 @@ var AuthenticationInitializer = {
       Cookies.setItem('user_name', userName);
       application.register('auth:main', auth, { instantiate: false });
       application.inject('controller', 'auth', 'auth:main');
+      application.inject('component', 'auth', 'auth:main');
       // Clean the auth info querystring from the document's URL.
       var authenticatedPath = url.attr('path') + '#' + url.attr('fragment');
       window.history.replaceState("authenticated", "", authenticatedPath);
