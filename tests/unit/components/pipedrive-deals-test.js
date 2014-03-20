@@ -9,15 +9,27 @@ moduleForComponent('dashboard-widget', 'Unit - Pipedrive Deals component', {
       channel: 'awesome-deals'
     });
     return obj;
+  }, 
+  setup: function() {
+    this.subject().setupChart();
   }
 });
+
+
 
 test('it exists', function() {
   ok(this.subject() instanceof PipedriveDealsComponent);
 });
 
 test('it receives data and sets contents', function() {
-	var data = '[{ "name" : "Sales" }]';
+	var data = '[{"stage_name":"Opportunity","filters":' + 
+                '[{"name":"Substantial","dollar_value":1217000,"deal_count":29},' + 
+                '{"name":"SF","dollar_value":300000,"deal_count":8}]' +
+              '},' +
+              '{"stage_name":"Qualified","filters":' +
+                '[{"name":"Substantial","dollar_value":0,"deal_count":29},' +
+                '{"name":"SF","dollar_value":0,"deal_count":8}]' +
+              '}]';
 	this.subject().send('receiveEvent', data);
-	equal(this.subject().get('contents.0.name'), 'Sales');
+	equal(this.subject().get('contents.0.stage_name'), 'Opportunity');
 });

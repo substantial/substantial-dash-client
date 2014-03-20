@@ -17,7 +17,6 @@ var BeerAtWeWorkComponent = DashboardWidgetComponent.extend({
       });
     }
   }
-
 });
 
 export default BeerAtWeWorkComponent;

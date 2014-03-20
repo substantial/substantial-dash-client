@@ -6,6 +6,7 @@ html, body {
   font-size: 1.3em;
   font-family: 'Alegreya Sans', sans-serif;
   font-weight: 500;
+  //background-color: lightBlue;
 }
 
 p, h1, h2, h3, h4, h5 {
@@ -104,4 +105,11 @@ a:hover {
 
 .github-avatar {
   vertical-align: top;
+}
+
+/* NVD3 customizations */
+
+svg text {
+  fill: white;
+  stroke: white;
 }
