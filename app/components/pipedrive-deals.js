@@ -39,7 +39,7 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
     chart.yAxis
         .tickFormat(window.d3.format(',f'));
 
-    window.nv.utils.windowResize(chart.update);
+    //window.nv.utils.windowResize(chart.update);
 
     this.set("chart", chart);
 
