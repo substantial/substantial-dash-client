@@ -3,12 +3,14 @@
 {{yield}}
 
 {{#each contents}}
-  <div class="feed-event">
-    <p>{{summary}}</p>
-    <p class="details">
-      {{#if location}}<br>at {{location}}{{/if}}</p>
-  </div>
-      {{time-ago-in-words starts_at view.clock.pulse}}
+  {{#view "upcoming-hotness" time=starts_at}}
+    <div class="feed-event">
+      <p>{{summary}}</p>
+      <p class="details">
+        {{time-ago-in-words starts_at view.clock.pulse}}
+        {{#if location}}<br>at {{location}}{{/if}}</p>
+    </div>
+  {{/view}}
 {{else}}
-  <p>None.</p>
+  <p>None</p>
 {{/each}}
