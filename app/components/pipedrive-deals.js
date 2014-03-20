@@ -15,7 +15,6 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
 
   actions: {
     receiveEvent: function(data) {
-      Ember.Logger.debug('RE: ' + data);
       this.updateContents(data);
     }
   },
@@ -36,8 +35,6 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
       .groupSpacing(0.1)    //Distance between each group of bars.
       .color(['red', 'white'])      
     ;
-
-    Ember.Logger.debug("Controls:", chart.controls);
 
     chart.yAxis
         .tickFormat(window.d3.format(',f'));
