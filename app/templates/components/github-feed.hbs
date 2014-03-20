@@ -10,7 +10,7 @@
     <div class="flex-cell">
       <p>{{actor.login}} {{github-event-title this}}</p>
       <p class="details">
-        {{#view "interval-rerender" tagName="time"}}{{time-ago-in-words created_at}}{{/view}}
+        {{time-ago-in-words created_at view.clock.pulse}}
         <br>in <a {{bind-attr href=repo.url}}>{{repo.name}}</a>
       </p>
     </div>

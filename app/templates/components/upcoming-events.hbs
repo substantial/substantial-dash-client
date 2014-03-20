@@ -6,9 +6,9 @@
   <div class="feed-event">
     <p>{{summary}}</p>
     <p class="details">
-      {{#view "interval-rerender" tagName="time"}}{{time-ago-in-words starts_at}}{{/view}}
       {{#if location}}<br>at {{location}}{{/if}}</p>
   </div>
+      {{time-ago-in-words starts_at view.clock.pulse}}
 {{else}}
   <p>None.</p>
 {{/each}}

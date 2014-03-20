@@ -1,6 +1,7 @@
 import Resolver from 'ember/resolver';
 import AuthenticationInitalizer from 'appkit/initializers/authentication';
 import FayeClientInitalizer from 'appkit/initializers/faye-client';
+import ClockServiceInitalizer from 'appkit/initializers/clock-service';
 
 var App = Ember.Application.extend({
   LOG_ACTIVE_GENERATION: true,
@@ -14,5 +15,6 @@ var App = Ember.Application.extend({
 
 App.initializer(AuthenticationInitalizer);
 App.initializer(FayeClientInitalizer);
+App.initializer(ClockServiceInitalizer);
 
 export default App;
