@@ -25,6 +25,7 @@ Built with EAK, [Ember App Kit](http://stefanpenner.github.io/ember-app-kit/)
 * [Node.js](http://nodejs.org) installed (only required for development and build)
 * `npm install -g grunt-cli`
 * `npm install -g bower`
+* `brew install phantomjs`
 
 ### Boot-up
 
