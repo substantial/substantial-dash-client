@@ -16,7 +16,7 @@ var ClockService = Ember.Object.extend({
         if (typeof minutes === 'number') {
           clock.set('_minutes', minutes + (1/4));
         }
-      })
+      });
     }, 15000);
   }.observes('_minutes').on('init'),
   _minutes: 0
