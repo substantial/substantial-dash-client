@@ -7,11 +7,16 @@ var ClockService = Ember.Object.extend({
   pulse: Ember.computed.oneWay('_minutes').readOnly(),
   tick: function () {
     var clock = this;
-    Ember.run.later(function () {
-      var minutes = clock.get('_minutes');
-      if (typeof minutes === 'number') {
-        clock.set('_minutes', minutes + (1/4));
-      }
+    // This should be the idiomatic `Ember.run.later` but that
+    // blocks acceptance tests. This is a workaround from
+    // https://github.com/emberjs/ember.js/issues/3008
+    setTimeout(function() {
+      Em.run(function() {
+        var minutes = clock.get('_minutes');
+        if (typeof minutes === 'number') {
+          clock.set('_minutes', minutes + (1/4));
+        }
+      })
     }, 15000);
   }.observes('_minutes').on('init'),
   _minutes: 0
