@@ -39,7 +39,7 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
     chart.yAxis
         .tickFormat(window.d3.format(',f'));
 
-    //window.nv.utils.windowResize(chart.update);
+    window.nv.utils.windowResize(chart.update);
 
     this.set("chart", chart);
 
@@ -55,7 +55,7 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
     var chart = this.get("chart");
 
     if (contents) {
-      var referenceFilters = Ember.A(contents[0].filters);
+      var referenceFilters = Ember.A(contents.get('firstObject.filters'));
 
       referenceFilters.forEach(function(referenceFilter) {
         var filterName = referenceFilter.name;
@@ -68,12 +68,12 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
           var dollar_value = filter.dollar_value;
           var deal_count = filter.deal_count;
 
-          salesKeyValue.values.push( {x: x, y: dollar_value} );
-          dealsKeyValue.values.push( {x: x, y: deal_count} );
+          salesKeyValue.values.pushObject( {x: x, y: dollar_value} );
+          dealsKeyValue.values.pushObject( {x: x, y: deal_count} );
         });
 
-        salesData.push(salesKeyValue);
-        dealsData.push(dealsKeyValue);
+        salesData.pushObject(salesKeyValue);
+        dealsData.pushObject(dealsKeyValue);
       });
     }
 
