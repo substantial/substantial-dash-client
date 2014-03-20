@@ -26,3 +26,29 @@ function strictEqual(actual, expected, message) {
 window.exists = exists;
 window.equal = equal;
 window.strictEqual = strictEqual;
+
+// Fix for failures in PhantomJS due to Function not having bind() in that env.
+//
+// Polyfill from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+//
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function (oThis) {
+    if (typeof this !== "function") {
+      // closest thing possible to the ECMAScript 5 internal IsCallable function
+      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+
+    var aArgs = Array.prototype.slice.call(arguments, 1), 
+        fToBind = this, 
+        FnNOP = function () {},
+        FnBound = function () {
+          return fToBind.apply(this instanceof FnNOP && oThis ? this : oThis,
+                               aArgs.concat(Array.prototype.slice.call(arguments)));
+        };
+
+    FnNOP.prototype = this.prototype;
+    FnBound.prototype = new FnNOP();
+
+    return FnBound;
+  };
+}
