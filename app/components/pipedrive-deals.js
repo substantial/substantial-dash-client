@@ -4,7 +4,7 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
 
   init: function() {
     this._super();
-    this.set("contents", [ { filler_value_so_embers_at_each_observing_works_on_first_array_fill: 0 } ]);
+    this.set("contents", []);
   },
 
   didInsertElement: function() {
@@ -47,43 +47,45 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
   }, 
 
   populateChart: function() {
-    var contents = this.get("contents");
+    Ember.run.next(this, function () {
+      var contents = this.get("contents");
 
-    // map server data to a format accepted by the chart
-    var salesData = [];
-    var dealsData = [];
-    var chart = this.get("chart");
+      // map server data to a format accepted by the chart
+      var salesData = [];
+      var dealsData = [];
+      var chart = this.get("chart");
 
-    if (contents) {
-      var referenceFilters = Ember.A(contents.get('firstObject.filters'));
+      if (contents) {
+        var referenceFilters = Ember.A(contents.get('firstObject.filters'));
 
-      referenceFilters.forEach(function(referenceFilter) {
-        var filterName = referenceFilter.name;
-        var salesKeyValue = { key: filterName, values: [] };
-        var dealsKeyValue = { key: filterName, values: [] };
+        referenceFilters.forEach(function(referenceFilter) {
+          var filterName = referenceFilter.name;
+          var salesKeyValue = { key: filterName, values: [] };
+          var dealsKeyValue = { key: filterName, values: [] };
 
-        contents.forEach(function(content) {
-          var filter = content.filters.findBy('name', filterName);
-          var x = content.stage_name;
-          var dollar_value = filter.dollar_value;
-          var deal_count = filter.deal_count;
+          contents.forEach(function(content) {
+            var filter = content.filters.findBy('name', filterName);
+            var x = content.stage_name;
+            var dollar_value = filter.dollar_value;
+            var deal_count = filter.deal_count;
 
-          salesKeyValue.values.pushObject( {x: x, y: dollar_value} );
-          dealsKeyValue.values.pushObject( {x: x, y: deal_count} );
+            salesKeyValue.values.pushObject( {x: x, y: dollar_value} );
+            dealsKeyValue.values.pushObject( {x: x, y: deal_count} );
+          });
+
+          salesData.pushObject(salesKeyValue);
+          dealsData.pushObject(dealsKeyValue);
         });
+      }
 
-        salesData.pushObject(salesKeyValue);
-        dealsData.pushObject(dealsKeyValue);
-      });
-    }
+      window.d3.select('.pipedrive-sales-chart svg')
+        .datum(salesData)
+        .call(chart);
 
-    window.d3.select('.pipedrive-sales-chart svg')
-      .datum(salesData)
-      .call(chart);
-
-    window.d3.select('.pipedrive-deals-chart svg')
-      .datum(dealsData)
-      .call(chart);
+      window.d3.select('.pipedrive-deals-chart svg')
+        .datum(dealsData)
+        .call(chart);
+    });
 
   }.observes("contents.@each")
 });
