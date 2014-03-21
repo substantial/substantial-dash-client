@@ -9,7 +9,7 @@ var UpcomingHotnessView = Ember.View.extend({
     var now = window.moment();
     var diffSecs = window.moment(time).diff(now);
     var temperature = null;
-    if (diffSecs < 1) {
+    if (diffSecs < 300000) {
       temperature = "hot";
     } else if (diffSecs < 7200000) {
       temperature = "warm";
