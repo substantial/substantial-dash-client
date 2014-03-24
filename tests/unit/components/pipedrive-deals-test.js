@@ -15,8 +15,6 @@ moduleForComponent('dashboard-widget', 'Unit - Pipedrive Deals component', {
   }
 });
 
-
-
 test('it exists', function() {
   ok(this.subject() instanceof PipedriveDealsComponent);
 });

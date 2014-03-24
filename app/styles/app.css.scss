@@ -6,7 +6,7 @@ html, body {
   font-size: 1.3em;
   font-family: 'Alegreya Sans', sans-serif;
   font-weight: 500;
-  //background-color: lightBlue;
+  //background-color: navy;
 }
 
 p, h1, h2, h3, h4, h5 {
@@ -123,9 +123,24 @@ a:hover {
   vertical-align: top;
 }
 
-/* NVD3 customizations */
+/* D3 customizations */
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: #aa1d2a;
+}
+
+.x.axis path {
+  display: none;
+}
 
 svg text {
   fill: white;
-  stroke: white;
+  stroke: none;
 }

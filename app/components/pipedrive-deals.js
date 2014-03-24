@@ -1,14 +1,17 @@
 import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
+import BarChartComponent from 'appkit/components/bar-chart';
 
 var PipedriveDealsComponent = DashboardWidgetComponent.extend({
 
   init: function() {
     this._super();
     this.set("contents", []);
+    this.set("sales", []);
   },
 
   didInsertElement: function() {
-    this.setupChart();
+      Ember.Logger.debug("MEOW4");
+    // this.setupChart();
   },
 
   // TODO: add did didDestroyElement one day
@@ -26,67 +29,41 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
     contents.setObjects(items);
   },
 
-  setupChart: function() {
-    var chart = window.nv.models.multiBarChart()
-      .transitionDuration(250)
-      .reduceXTicks(false)   //If 'false', every single x-axis tick label will be rendered.
-      .rotateLabels(0)      //Angle to rotate x-axis labels.
-      .showControls(false)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
-      .groupSpacing(0.1)    //Distance between each group of bars.
-      .color(['red', 'white'])      
-    ;
+  // setupChart: function() {
+  //   var chart = BarChartComponent.new();
 
-    chart.yAxis
-        .tickFormat(window.d3.format(',f'));
+  //   this.set("chart", chart);
 
-    window.nv.utils.windowResize(chart.update);
-
-    this.set("chart", chart);
-
-    return chart;
-  }, 
+  //   return chart;
+  // }, 
 
   populateChart: function() {
-    Ember.run.next(this, function () {
+      Ember.Logger.debug("MEOW3");
       var contents = this.get("contents");
+      var sales = this.get("sales");
 
-      // map server data to a format accepted by the chart
-      var salesData = [];
-      var dealsData = [];
-      var chart = this.get("chart");
-
+      // map server data to the format accepted by the chart
+      var chartData = [];
+      
       if (contents) {
         var referenceFilters = Ember.A(contents.get('firstObject.filters'));
 
-        referenceFilters.forEach(function(referenceFilter) {
-          var filterName = referenceFilter.name;
-          var salesKeyValue = { key: filterName, values: [] };
-          var dealsKeyValue = { key: filterName, values: [] };
-
           contents.forEach(function(content) {
-            var filter = content.filters.findBy('name', filterName);
-            var x = content.stage_name;
-            var dollar_value = filter.dollar_value;
-            var deal_count = filter.deal_count;
+            var stage = { group: content.stage_name, values: [] };
 
-            salesKeyValue.values.pushObject( {x: x, y: dollar_value} );
-            dealsKeyValue.values.pushObject( {x: x, y: deal_count} );
-          });
+            content.filters.forEach(function(filter) {
+              stage.values.pushObject({ 
+                legend: filter.name, 
+                yValue: filter.dollar_value, 
+                yLabel: filter.deal_count
+              });
+            }); //filters
 
-          salesData.pushObject(salesKeyValue);
-          dealsData.pushObject(dealsKeyValue);
-        });
+            chartData.pushObject(stage);
+          }); //contents
+
+          sales.setObjects(chartData);
       }
-
-      window.d3.select('.pipedrive-sales-chart svg')
-        .datum(salesData)
-        .call(chart);
-
-      window.d3.select('.pipedrive-deals-chart svg')
-        .datum(dealsData)
-        .call(chart);
-    });
-
   }.observes("contents.@each")
 });
 
