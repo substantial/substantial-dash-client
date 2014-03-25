@@ -1,0 +1,20 @@
+<h2>{{title}}</h2>
+
+{{yield}}
+
+{{#each contents}}
+  <div class="flex-grid feed-event">
+    <div class="flex-cell-avatar">
+      {{gravatar-img user.gravatar_id}}
+    </div>
+    <div class="flex-cell">
+      <p class="details">{{dashEventType}}
+        <br>in {{head.repo.name}}</p>
+      <p><a {{bind-attr href=_links.html.href}}>{{title}}</a></p>
+      <p class="details">
+        updated {{time-ago-in-words updated_at view.clock.pulse}}</p>
+    </div>
+  </div>
+{{else}}
+  <p>All Clear</p>
+{{/each}}
