@@ -9,9 +9,6 @@ moduleForComponent('dashboard-widget', 'Unit - Pipedrive Deals component', {
       channel: 'awesome-deals'
     });
     return obj;
-  }, 
-  setup: function() {
-    this.subject().setupChart();
   }
 });
 
