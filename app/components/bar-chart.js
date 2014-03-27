@@ -6,6 +6,7 @@ var BarChartComponent = Ember.Component.extend({
       var data = this.get('data');
       if (Ember.isEmpty(data)) { return; }
 
+      var d3 = window.d3;
       var el = this.get('element');
       var width = parseInt(d3.select(el).style('width'), 10);
       var height = parseInt(d3.select(el).style('height'), 10);
@@ -15,22 +16,22 @@ var BarChartComponent = Ember.Component.extend({
       var barsWidth = width - yAxisSpace;
       var barsHeight = height - headerSpace - xAxisSpace;
 
-      var yFormat = window.d3.format(".2s");
+      var yFormat = d3.format(".2s");
 
-      var svg = window.d3.select(el);
-      var x0 = window.d3.scale.ordinal().rangeRoundBands([0, barsWidth], 0.1);
-      var x1 = window.d3.scale.ordinal();
-      var y = window.d3.scale.linear().range([barsHeight, 0]);
-      var color = window.d3.scale.ordinal().range(["#999", "white"]);
+      var svg = d3.select(el);
+      var x0 = d3.scale.ordinal().rangeRoundBands([0, barsWidth], 0.1);
+      var x1 = d3.scale.ordinal();
+      var y = d3.scale.linear().range([barsHeight, 0]);
+      var color = d3.scale.ordinal().range(["#999", "white"]);
 
-      var xAxis = window.d3.svg.axis().scale(x0).orient("bottom");
-      var yAxis = window.d3.svg.axis().scale(y).orient("left").tickFormat(yFormat);
+      var xAxis = d3.svg.axis().scale(x0).orient("bottom");
+      var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(yFormat);
 
       var legendNames = data[0].values.map(function(d) { return d.legend; });
       x0.domain(data.map(function(d) { return d.group; }));
       x1.domain(legendNames).rangeRoundBands([0, x0.rangeBand()]);
-      var maxY = window.d3.max(data, function(d) { 
-        return window.d3.max(d.values, function(d) {return d.yValue;}); 
+      var maxY = d3.max(data, function(d) { 
+        return d3.max(d.values, function(d) {return d.yValue;}); 
       });
       y.domain([0, maxY]);
 
