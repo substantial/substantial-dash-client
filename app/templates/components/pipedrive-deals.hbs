@@ -2,11 +2,4 @@
 
 {{yield}}
 
-{{#if contents}}
-	<div class="pipedrive-sales-chart">
-    <svg></svg>
-	</div>
-  <div class="pipedrive-deals-chart">
-    <svg></svg>
-  </div>
-{{/if}}
+{{bar-chart data=sales yAxisTitle='Dollars'}}
