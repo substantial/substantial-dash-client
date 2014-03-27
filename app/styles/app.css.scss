@@ -125,6 +125,11 @@ a:hover {
 
 /* D3 customizations */
 
+.bar-chart {
+  height: 16rem;
+  width: 100%;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -132,15 +137,14 @@ a:hover {
   shape-rendering: crispEdges;
 }
 
-.bar {
-  fill: #aa1d2a;
-}
-
-.x.axis path {
-  display: none;
+.axis .domain {
+  fill: none;
+  stroke: none;
 }
 
 svg text {
   fill: white;
   stroke: none;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 0.7rem;
 }
