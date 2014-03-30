@@ -1,6 +1,10 @@
 var BarChartComponent = Ember.Component.extend({
     tagName: 'svg',
     classNames: ['bar-chart'],
+    attributeBindings: ['height', 'width'],
+
+    height: '100%',
+    width: '100%',
   
     draw: function() {
       var data = this.get('data');
@@ -10,7 +14,7 @@ var BarChartComponent = Ember.Component.extend({
       var el = this.get('element');
       var width = parseInt(d3.select(el).style('width'), 10);
       var height = parseInt(d3.select(el).style('height'), 10);
-      var headerSpace = 20;
+      var headerSpace = 30;
       var xAxisSpace = 50;
       var yAxisSpace = 50;
       var barsWidth = width - yAxisSpace;
@@ -45,7 +49,7 @@ var BarChartComponent = Ember.Component.extend({
 
       var yAxisNode = svg.select(".y.axis");
       svg.select(".y.axis .axis-title")
-        .attr("transform", "translate("+(-yAxisSpace)+",-5)");
+        .attr("transform", "translate("+(-yAxisSpace)+","+(-headerSpace/2)+")");
       yAxisNode.attr("transform", "translate("+yAxisSpace+","+headerSpace+")");
       yAxisNode.call(yAxis);
 

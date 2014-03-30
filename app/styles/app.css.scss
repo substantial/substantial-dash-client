@@ -1,7 +1,7 @@
 /* Put your CSS here */
 html, body {
-  margin: 20px;
-  background: black;
+  height: 100%;
+  background: #222;
   color: white;
   font-size: 1.3em;
   font-family: 'Alegreya Sans', sans-serif;
@@ -20,6 +20,7 @@ p {
 
 h1, h2, h3, h4, h5 {
   font-weight: 100;
+  margin-bottom: 0.2em;
 }
 
 h1 {
@@ -78,6 +79,18 @@ a:hover {
   order: $val;
 }
 
+@mixin fill-vertical() {
+  align-items: stretch;
+  -webkit-align-items: stretch;
+  -moz-align-items: stretch;
+}
+
+@mixin rounded-corners($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
 .flex-grid {
   @include flexbox();
 }
@@ -90,9 +103,38 @@ a:hover {
   @include flex(0 0 52px);
 }
 
-.details {
+.dashboard {
+  margin: auto;
+}
+
+// .dashboard-grid {
+//   @include flexbox();
+//   @include fill-vertical();
+// }
+
+.gridster > ul {
+  list-style: none;
+}
+
+.gridster > ul > li {
+  @include rounded-corners(0.25rem);
+  background-color: black;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.dashboard-widget {
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.details, .app-meta {
   font-size: 0.7rem;
   line-height: 0.8rem;
+}
+
+.app-meta {
+  color: #777;
+  text-align: right;
 }
 
 .hot {
@@ -122,8 +164,8 @@ a:hover {
 /* D3 customizations */
 
 .bar-chart {
-  height: 16rem;
-  width: 100%;
+  height: 240px;
+  width: 500px;
 }
 
 .axis path,
