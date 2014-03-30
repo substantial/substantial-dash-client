@@ -14,9 +14,9 @@ var BarChartComponent = Ember.Component.extend({
       var el = this.get('element');
       var width = parseInt(d3.select(el).style('width'), 10);
       var height = parseInt(d3.select(el).style('height'), 10);
-      var headerSpace = 30;
+      var headerSpace = 40;
       var xAxisSpace = 50;
-      var yAxisSpace = 50;
+      var yAxisSpace = 60;
       var barsWidth = width - yAxisSpace;
       var barsHeight = height - headerSpace - xAxisSpace;
 
@@ -26,10 +26,10 @@ var BarChartComponent = Ember.Component.extend({
       var x0 = d3.scale.ordinal().rangeRoundBands([0, barsWidth], 0.1);
       var x1 = d3.scale.ordinal();
       var y = d3.scale.linear().range([barsHeight, 0]);
-      var color = d3.scale.ordinal().range(["#999", "white"]);
+      var color = d3.scale.ordinal().range(["#777", "white"]);
 
       var xAxis = d3.svg.axis().scale(x0).orient("bottom");
-      var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(yFormat);
+      var yAxis = d3.svg.axis().scale(y).orient("left").ticks(5).tickFormat(yFormat);
 
       var legendNames = data[0].values.map(function(d) { return d.legend; });
       x0.domain(data.map(function(d) { return d.group; }));
@@ -45,11 +45,12 @@ var BarChartComponent = Ember.Component.extend({
 
       svg.selectAll(".x.axis text")
         .style("text-anchor", "start")
-        .attr("transform", "translate(-20,0) rotate(22)");
+        .attr("transform", "translate(-20,0) rotate(20)");
 
       var yAxisNode = svg.select(".y.axis");
       svg.select(".y.axis .axis-title")
-        .attr("transform", "translate("+(-yAxisSpace)+","+(-headerSpace/2)+")");
+        .style("text-anchor", "start")
+        .attr("transform", "translate("+-(yAxisSpace-12)+","+barsHeight+") rotate(-90)");
       yAxisNode.attr("transform", "translate("+yAxisSpace+","+headerSpace+")");
       yAxisNode.call(yAxis);
 
@@ -73,7 +74,10 @@ var BarChartComponent = Ember.Component.extend({
       bars.attr("width", x1.rangeBand())
           .attr("rx", 6)
           .attr("yx", 6)
-          .attr("x", function(d) { return x1(d.legend); })
+          .attr("x", function(d) { 
+            var firstOffset = x1.range()[0];
+            var offset = x1(d.legend);
+            return offset === firstOffset ? offset : (offset*0.66) ; })
           .attr("y", function(d) { return headerSpace + y(d.yValue); })
           .attr("height", function(d) { return barsHeight - y(d.yValue); })
           .style("fill", function(d) { return color(d.legend); });
