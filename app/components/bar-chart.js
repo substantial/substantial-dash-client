@@ -16,7 +16,7 @@ var BarChartComponent = Ember.Component.extend({
       var height = parseInt(d3.select(el).style('height'), 10);
       var headerSpace = 40;
       var xAxisSpace = 50;
-      var yAxisSpace = 60;
+      var yAxisSpace = 50;
       var barsWidth = width - yAxisSpace;
       var barsHeight = height - headerSpace - xAxisSpace;
 
@@ -39,18 +39,22 @@ var BarChartComponent = Ember.Component.extend({
       });
       y.domain([0, maxY]);
 
+      // X axis
       svg.select(".x.axis")
         .attr("transform", "translate("+yAxisSpace+","+(headerSpace+barsHeight)+")")
         .call(xAxis);
 
       svg.selectAll(".x.axis text")
         .style("text-anchor", "start")
-        .attr("transform", "translate(-20,0) rotate(20)");
+        .attr("transform", function(d, i) {
+          return "translate(-"+x1.rangeBand()+",0)";
+        });
 
+      // Y axis
       var yAxisNode = svg.select(".y.axis");
       svg.select(".y.axis .axis-title")
         .style("text-anchor", "start")
-        .attr("transform", "translate("+-(yAxisSpace-12)+","+barsHeight+") rotate(-90)");
+        .attr("transform", "translate("+-(yAxisSpace-12)+","+(-22)+")");
       yAxisNode.attr("transform", "translate("+yAxisSpace+","+headerSpace+")");
       yAxisNode.call(yAxis);
 
@@ -65,15 +69,21 @@ var BarChartComponent = Ember.Component.extend({
           return "translate(" + xOffset + ",0)"; 
         });
 
-      // Main bars
-      var bars = group.selectAll("rect")
+      // Individual bars
+      var bars = group.selectAll("g.y-bar")
           .data(function(d) { return d.values; });
 
-      bars.enter().append("rect");
+      var barsEnter = bars.enter().append("g");
+      barsEnter.classed("y-bar");
+      barsEnter.append("rect");
+      barsEnter.append("text")
+          .attr("class", "y-label");
 
-      bars.attr("width", x1.rangeBand())
+      bars.selectAll("rect")
+          .attr("width", x1.rangeBand())
           .attr("rx", 6)
           .attr("yx", 6)
+          // Overlap group members by 66% of their offset.
           .attr("x", function(d) { 
             var firstOffset = x1.range()[0];
             var offset = x1(d.legend);
@@ -81,6 +91,17 @@ var BarChartComponent = Ember.Component.extend({
           .attr("y", function(d) { return headerSpace + y(d.yValue); })
           .attr("height", function(d) { return barsHeight - y(d.yValue); })
           .style("fill", function(d) { return color(d.legend); });
+
+      bars.selectAll(".y-label")
+        .text(function(d) { return d.yLabel == '0' ? '' : d.yLabel; })
+        .style("text-anchor", "start")
+        // Follow group member offset.
+        .attr("transform", function(d) { 
+          var firstOffset = x1.range()[0];
+          var offset = x1(d.legend);
+          var offsetOffset = offset === firstOffset ? offset : (offset*0.66) ;
+          return "translate(" + (offsetOffset+3) + "," + (barsHeight+headerSpace-3) + ")"; 
+        });
 
       bars.exit().remove();
 
@@ -94,21 +115,21 @@ var BarChartComponent = Ember.Component.extend({
       legendEnterGroup.append("text");
 
       legend.attr("transform", function(d, i) { 
-        return "translate(" + i * 100 + ", 0)";
+        return "translate(0," + (i*20) + ")";
       });
 
       legend.selectAll("rect")
           .attr("rx", 6)
           .attr("yx", 6)
-          .attr("x", yAxisSpace)
+          .attr("x", barsWidth+yAxisSpace-16)
           .attr("width", 16)
           .attr("height", 16)
           .style("fill", color);
 
       legend.selectAll("text")
-          .attr("x", yAxisSpace+20)
-          .attr("dy", "1em")
-          .style("text-anchor", "start")
+          .attr("x", barsWidth+yAxisSpace-20)
+          .attr("dy", "0.8em")
+          .style("text-anchor", "end")
           .text(function(d) { return d; });
 
     }.observes("data.@each"),

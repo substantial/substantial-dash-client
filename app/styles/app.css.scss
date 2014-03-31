@@ -180,9 +180,16 @@ a:hover {
   stroke: none;
 }
 
+.y-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  fill: black;
+}
+
 svg text {
   fill: white;
   stroke: none;
   font-family: 'Alegreya Sans', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+  font-weight: 300;
 }
