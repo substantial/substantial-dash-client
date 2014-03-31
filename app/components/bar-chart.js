@@ -93,7 +93,7 @@ var BarChartComponent = Ember.Component.extend({
           .style("fill", function(d) { return color(d.legend); });
 
       bars.selectAll(".y-label")
-        .text(function(d) { return d.yLabel == '0' ? '' : d.yLabel; })
+        .text(function(d) { return d.yLabel === 0 ? '' : d.yLabel; })
         .style("text-anchor", "start")
         // Follow group member offset.
         .attr("transform", function(d) { 
