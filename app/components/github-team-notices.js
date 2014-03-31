@@ -31,7 +31,7 @@ var GithubTeamNotices = DashboardWidgetComponent.extend({
 
       // Process current items.
       items.forEach(function(item) {
-        var existingItem = contents.findBy("url", item.id);
+        var existingItem = contents.findBy("id", item.id);
         if (Ember.isEmpty(existingItem)) {
           // Add new items.
           var newItem = contents.pushObject(Ember.Object.create(item));
