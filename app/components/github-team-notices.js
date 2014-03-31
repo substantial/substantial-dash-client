@@ -22,7 +22,7 @@ var GithubTeamNotices = DashboardWidgetComponent.extend({
       // Remove items that have disappeared.
       var itemsToRemove = [];
       contents.forEach(function(existingItem) {
-        var isNotPresent = !items.findBy("url", existingItem.get("url"));
+        var isNotPresent = !items.findBy("id", existingItem.get("id"));
         if (isNotPresent) {
           itemsToRemove.pushObject(existingItem);
         }
@@ -31,7 +31,7 @@ var GithubTeamNotices = DashboardWidgetComponent.extend({
 
       // Process current items.
       items.forEach(function(item) {
-        var existingItem = contents.findBy("url", item.url);
+        var existingItem = contents.findBy("id", item.id);
         if (Ember.isEmpty(existingItem)) {
           // Add new items.
           var newItem = contents.pushObject(Ember.Object.create(item));
@@ -41,6 +41,7 @@ var GithubTeamNotices = DashboardWidgetComponent.extend({
           existingItem.setProperties(item);
         }
       });
+
     }
   }
 

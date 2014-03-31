@@ -1,21 +1,19 @@
 {{#if auth.apiKey}}
 
-<p class="details">Authenticated as {{auth.userName}}</p>
-  
-<div class="flex-grid">
-  <div class="flex-cell">
-    {{github-team-notices title="Code" channel="github-team-notices"}}
+  <div class="app-meta">{{auth.userName}} <i class="fa fa-user"></i></div>
+
+  <div class="gridster">
+    <ul>
+      <li data-row="1" data-col="1" data-sizex="5" data-sizey="3">
+        {{upcoming-events title="Upcoming" channel="icalendar-upcoming"}}</li>
+    	<li data-row="1" data-col="2" data-sizex="5" data-sizey="3">
+        {{pipedrive-deals title="Sales" channel="pipedrive-deals"}}</li>
+      <li data-row="2" data-col="1" data-sizex="5" data-sizey="3">
+        {{github-team-notices title="Code" channel="github-team-notices"}}</li>
+    	<li data-row="2" data-col="2" data-sizex="5" data-sizey="3">
+        {{beer-at-we-work title="Beer" channel="beer-at-we-work"}}</li>
+    </ul>
   </div>
-  <div class="flex-cell">
-    {{upcoming-events title="Upcoming" channel="icalendar-upcoming"}}
-  </div>
-  <div class="flex-cell">
-  	{{pipedrive-deals title="Sales" channel="pipedrive-deals"}}
-  </div>
-  <div class="flex-cell">
-  	{{beer-at-we-work title="Beer" channel="beer-at-we-work"}}
-  </div>
-</div>
 
 {{else}}
 

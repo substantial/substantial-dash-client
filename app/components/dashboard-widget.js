@@ -1,6 +1,8 @@
 var DashboardWidgetComponent = Ember.Component.extend({
   title: null,
   channel: null,
+
+  classNames: ["dashboard-widget"],
   
   // Injected from the Application initializer.
   auth: null,
