@@ -8,11 +8,10 @@
       {{gravatar-img user.gravatar_id}}
     </div>
     <div class="flex-cell">
-      <p class="details">{{dashEventType}}
-        <br>in {{head.repo.name}}</p>
       <p><a {{bind-attr href=_links.html.href}}>{{title}}</a></p>
       <p class="details">
-        updated {{time-ago-in-words updated_at view.clock.pulse}}</p>
+        {{time-ago-in-words updated_at view.clock.pulse}}
+        <br>{{dashEventType}} in {{head.repo.name}}</p>
     </div>
   </div>
 {{else}}

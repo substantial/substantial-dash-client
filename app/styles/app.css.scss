@@ -3,7 +3,7 @@ html, body {
   height: 100%;
   background: #222;
   color: white;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-family: 'Alegreya Sans', sans-serif;
   font-weight: 500;
   //background-color: navy;
@@ -19,24 +19,23 @@ p {
 }
 
 h1, h2, h3, h4, h5 {
-  font-weight: 100;
+  font-weight: 300;
   margin-bottom: 0.2em;
 }
 
 h1 {
   font-size: 4rem;
+  font-weight: 100;
 }
 
 h2 {
   font-size: 3rem;
+  font-weight: 100;
 }
 
 h3 {
   font-size: 2rem;
-}
-
-strong {
-  font-weight: 900;
+  font-weight: 500;
 }
 
 a {
@@ -128,8 +127,9 @@ a:hover {
 }
 
 .details, .app-meta {
-  font-size: 0.7rem;
-  line-height: 0.8rem;
+  font-weight: 300;
+  font-size: 0.8rem;
+  line-height: 0.9rem;
 }
 
 .app-meta {
