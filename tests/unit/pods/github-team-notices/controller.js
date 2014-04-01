@@ -1,10 +1,11 @@
-import { test , moduleForComponent } from 'appkit/tests/helpers/module-for';
-import BayeuxStub from 'appkit/tests/helpers/bayeux-stub';
-import GithubTeamNoticesComponent from 'appkit/components/github-team-notices';
+import { test , moduleFor } from 'appkit/tests/helpers/module-for';
 
-moduleForComponent('github-team-notices', 'Unit - GitHub Team Notices component', {
+import GithubTeamNoticesController from 'appkit/pods/github-team-notices/controller';
+import BayeuxStub from 'appkit/tests/helpers/bayeux-stub';
+
+moduleFor('controller:pods/github-team-notices', 'Unit - GitHub Team Notices controller', {
   subject: function() {
-    var obj = GithubTeamNoticesComponent.create({
+    var obj = GithubTeamNoticesController.create({
       bayeux: new BayeuxStub(),
       channel: 'awesome-team-notices'
     });
@@ -13,7 +14,7 @@ moduleForComponent('github-team-notices', 'Unit - GitHub Team Notices component'
 });
 
 test('it exists', function() {
-  ok(this.subject() instanceof GithubTeamNoticesComponent);
+  ok(this.subject() instanceof GithubTeamNoticesController);
 });
 
 test('it receives data and sets contents', function() {
