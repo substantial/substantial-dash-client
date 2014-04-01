@@ -1,6 +1,7 @@
-import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
+import BayeuxSubscriber from 'appkit/mixins/bayeux-subscriber';
 
-var BeerAtWeWorkComponent = DashboardWidgetComponent.extend({
+var BeerAtWeWorkController = Ember.ArrayController.extend(BayeuxSubscriber, {
+  channel: "beer-at-we-work",
 
   init: function() {
     this._super();
@@ -19,4 +20,4 @@ var BeerAtWeWorkComponent = DashboardWidgetComponent.extend({
   }
 });
 
-export default BeerAtWeWorkComponent;
+export default BeerAtWeWorkController;
