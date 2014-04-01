@@ -1,10 +1,11 @@
-import { test , moduleForComponent } from 'appkit/tests/helpers/module-for';
-import BayeuxStub from 'appkit/tests/helpers/bayeux-stub';
-import PipedriveDealsComponent from 'appkit/components/pipedrive-deals';
+import { test , moduleFor } from 'appkit/tests/helpers/module-for';
 
-moduleForComponent('dashboard-widget', 'Unit - Pipedrive Deals component', {
+import PipedriveDealsController from 'appkit/pods/pipedrive-deals/controller';
+import BayeuxStub from 'appkit/tests/helpers/bayeux-stub';
+
+moduleFor('controller:pods/pipedrive-deals', 'Unit - Pipedrive Deals controller', {
   subject: function() {
-    var obj = PipedriveDealsComponent.create({
+    var obj = PipedriveDealsController.create({
       bayeux: new BayeuxStub(),
       channel: 'awesome-deals'
     });
@@ -13,7 +14,7 @@ moduleForComponent('dashboard-widget', 'Unit - Pipedrive Deals component', {
 });
 
 test('it exists', function() {
-  ok(this.subject() instanceof PipedriveDealsComponent);
+  ok(this.subject() instanceof PipedriveDealsController);
 });
 
 test('it receives data and sets contents', function() {
@@ -26,5 +27,5 @@ test('it receives data and sets contents', function() {
                 '{"name":"SF","dollar_value":0,"deal_count":8}]' +
               '}]';
 	this.subject().send('receiveEvent', data);
-	equal(this.subject().get('contents.0.stage_name'), 'Opportunity');
+	equal(this.subject().get('contents.firstObject.stage_name'), 'Opportunity');
 });

@@ -1,8 +1,5 @@
-var DashboardWidgetComponent = Ember.Component.extend({
-  title: null,
+var BayeuxSubscriber = Ember.Mixin.create({  
   channel: null,
-
-  classNames: ["dashboard-widget"],
   
   // Injected from the Application initializer.
   auth: null,
@@ -29,11 +26,11 @@ var DashboardWidgetComponent = Ember.Component.extend({
     var bayeux = this.get("bayeux");
     var channel = this.get("channel");
     if (Ember.isEmpty(bayeux)) {
-      Ember.Logger.error("A `bayeux` is required. Did you pass it into the component?");
+      Ember.Logger.error("A `bayeux` is required");
       return;
     }
     if (Ember.isEmpty(channel)) {
-      Ember.Logger.error("A `channel` is required. Did you pass it into the component?");
+      Ember.Logger.error("A `channel` is required");
       return;
     }
 
@@ -60,4 +57,4 @@ var DashboardWidgetComponent = Ember.Component.extend({
   }
 });
 
-export default DashboardWidgetComponent;
+export default BayeuxSubscriber;

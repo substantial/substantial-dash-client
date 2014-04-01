@@ -206,6 +206,7 @@ module.exports = function(grunt) {
                      'sass:compile',
                      'less:compile',
                      'stylus:compile',
+                     'concat:podStyles', // support arbitrary CSS from pods/ structure
                      'copy:cssToResult',
                      'autoprefixer:app'
                      ]));

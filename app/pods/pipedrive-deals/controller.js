@@ -1,17 +1,13 @@
-import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
+import BayeuxSubscriber from 'appkit/mixins/bayeux-subscriber';
 import BarChartComponent from 'appkit/components/bar-chart';
 
-var PipedriveDealsComponent = DashboardWidgetComponent.extend({
+var PipedriveDealsController = Ember.ArrayController.extend(BayeuxSubscriber, {
+  channel: "pipedrive-deals",
 
   init: function() {
     this._super();
     this.set("contents", []);
     this.set("sales", []);
-  },
-
-  didInsertElement: function() {
-      Ember.Logger.debug("MEOW4");
-    // this.setupChart();
   },
 
   // TODO: add did didDestroyElement one day
@@ -67,4 +63,4 @@ var PipedriveDealsComponent = DashboardWidgetComponent.extend({
   }.observes("contents.@each")
 });
 
-export default PipedriveDealsComponent;
+export default PipedriveDealsController;

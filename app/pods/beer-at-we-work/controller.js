@@ -1,10 +1,11 @@
-import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
+import BayeuxSubscriber from 'appkit/mixins/bayeux-subscriber';
 
-var UpcomingEventsComponent = DashboardWidgetComponent.extend({
+var BeerAtWeWorkController = Ember.ArrayController.extend(BayeuxSubscriber, {
+  channel: "beer-at-we-work",
 
   init: function() {
     this._super();
-    this.set("contents", Ember.A());
+    this.set("contents", []);
   },
 
   actions: {
@@ -12,12 +13,11 @@ var UpcomingEventsComponent = DashboardWidgetComponent.extend({
       var items = Ember.A(JSON.parse(data));
       var contents = this.get("contents");
       contents.clear();
-      items.slice(0,5).forEach(function(item) {
+      items.forEach(function(item) {       
         contents.pushObject(Ember.Object.create(item));
       });
     }
   }
-
 });
 
-export default UpcomingEventsComponent;
+export default BeerAtWeWorkController;

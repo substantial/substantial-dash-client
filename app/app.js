@@ -9,7 +9,8 @@ var App = Ember.Application.extend({
   LOG_TRANSITIONS: true,
   LOG_TRANSITIONS_INTERNAL: true,
   LOG_VIEW_LOOKUPS: true,
-  modulePrefix: 'appkit', // TODO: loaded via config
+  modulePrefix: 'appkit',
+  podModulePrefix: 'appkit/pods',
   Resolver: Resolver['default']
 });
 
