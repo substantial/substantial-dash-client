@@ -1,6 +1,7 @@
-import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
+import BayeuxSubscriber from 'appkit/mixins/bayeux-subscriber';
 
-var UpcomingEventsComponent = DashboardWidgetComponent.extend({
+var IcalendarUpcomingController = Ember.ArrayController.extend(BayeuxSubscriber, {
+  channel: "icalendar-upcoming",
 
   init: function() {
     this._super();
@@ -17,7 +18,6 @@ var UpcomingEventsComponent = DashboardWidgetComponent.extend({
       });
     }
   }
-
 });
 
-export default UpcomingEventsComponent;
+export default IcalendarUpcomingController;
