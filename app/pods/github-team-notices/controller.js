@@ -1,6 +1,7 @@
-import DashboardWidgetComponent from 'appkit/components/dashboard-widget';
+import BayeuxSubscriber from 'appkit/mixins/bayeux-subscriber';
 
-var GithubTeamNotices = DashboardWidgetComponent.extend({
+var GithubTeamNoticesController = Ember.ArrayController.extend(BayeuxSubscriber, {
+  channel: "github-team-notices",
 
   init: function() {
     this._super();
@@ -44,7 +45,6 @@ var GithubTeamNotices = DashboardWidgetComponent.extend({
 
     }
   }
-
 });
 
-export default GithubTeamNotices;
+export default GithubTeamNoticesController;
