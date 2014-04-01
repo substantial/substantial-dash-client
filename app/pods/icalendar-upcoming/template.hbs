@@ -1,7 +1,7 @@
 <h2>Upcoming</h2>
 
 {{#each contents}}
-  {{#view "upcoming-hotness" time=starts_at}}
+  {{#view view.hotnessView time=starts_at}}
     <div class="feed-event">
       <p>{{summary}}</p>
       <p class="details">
