@@ -69,17 +69,20 @@ var BarChartComponent = Ember.Component.extend({
           return "translate(" + xOffset + ",0)"; 
         });
 
+      group.exit().remove();
+
       // Individual bars
-      var bars = group.selectAll("g.y-bar")
-          .data(function(d) { return d.values; });
+      var bars = group.selectAll(".y-bar")
+          .data(function(d) { return d.values; }, function(d) { return d.id; });
 
       var barsEnter = bars.enter().append("g");
-      barsEnter.classed("y-bar");
+      barsEnter.attr("class", "y-bar"); // classed() does not work for SVG <g>
       barsEnter.append("rect");
       barsEnter.append("text")
-          .attr("class", "y-label");
+        .attr("class", "y-label");
 
-      bars.selectAll("rect")
+      bars.select("rect")
+        .transition()
           .attr("width", x1.rangeBand())
           .attr("rx", 6)
           .attr("yx", 6)
@@ -92,7 +95,7 @@ var BarChartComponent = Ember.Component.extend({
           .attr("height", function(d) { return barsHeight - y(d.yValue); })
           .style("fill", function(d) { return color(d.legend); });
 
-      bars.selectAll(".y-label")
+      bars.select(".y-label")
         .text(function(d) { return d.yLabel === 0 ? '' : d.yLabel; })
         .style("text-anchor", "start")
         // Follow group member offset.

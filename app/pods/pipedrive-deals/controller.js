@@ -34,7 +34,6 @@ var PipedriveDealsController = Ember.ArrayController.extend(BayeuxSubscriber, {
   // }, 
 
   populateChart: function() {
-      Ember.Logger.debug("MEOW3");
       var contents = this.get("contents");
       var sales = this.get("sales");
 
@@ -45,11 +44,16 @@ var PipedriveDealsController = Ember.ArrayController.extend(BayeuxSubscriber, {
         var referenceFilters = Ember.A(contents.get('firstObject.filters'));
 
           contents.forEach(function(content) {
-            var stage = { group: content.stage_name, values: [] };
+            var stageName = content.stage_name;
+            var stage = { group: stageName, values: [] };
 
             content.filters.forEach(function(filter) {
+              var filterName = filter.name;
+              var id = stageName + '-' + filterName;
+              
               stage.values.pushObject({ 
-                legend: filter.name, 
+                id: id,
+                legend: filterName, 
                 yValue: filter.dollar_value, 
                 yLabel: filter.deal_count
               });
