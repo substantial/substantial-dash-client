@@ -1,1 +1,17 @@
-.beer-at-we-work {}
+@import "app/styles/_mixins.css.scss";
+
+.beer-at-we-work {
+  .floor-number {
+    color: #666;
+    font-size: 2rem;
+    line-height: 1.7rem;
+    @include flex(0 0 2rem);
+  }
+  .floor-content {
+
+  }
+  .beer-alcohol {
+    text-align: right;
+    @include flex(0 0 2rem);
+  }
+}

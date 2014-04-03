@@ -1,8 +1,16 @@
 <h2>Beer</h2>
 
 {{#each contents}}
-  <div class="feed-event">
-    <p>{{floor}}:  {{name}}</p>
+  <div class="flex-grid">
+    <div class="flex-cell floor-number">{{floor}}</div>
+    <div class="flex-cell beer-name">{{#if name}}
+      {{name}}
+    {{else}}
+      <span class="meta">{{#if error}}{{error}}{{else}}Not Available{{/if}}</span>
+    {{/if}}</div>
+    <div class="flex-cell beer-alcohol details">{{#if alcohol_content}}
+      {{number-as-percent alcohol_content}}  
+    {{/if}}</div>
   </div>
 {{else}}
   <p>Thirsty for data</p>
