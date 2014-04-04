@@ -6,7 +6,7 @@ Designed to display data from [Substantial Dash server](https://github.com/subst
 
 ## Tech
 
-* [Ember.js](http://emberjs.com): dashboard widgets build as [web components](http://emberjs.com/guides/components/)
+* [Ember.js](http://emberjs.com): event-driven UI
 * [Bayeux/Faye events](http://faye.jcoglan.com): publish & subscribe to data streams
 * [Gridster](http://gridster.net/): recomposable grid layout
 
