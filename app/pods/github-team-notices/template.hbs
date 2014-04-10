@@ -8,7 +8,7 @@
     <div class="flex-cell">
       <p><a {{bind-attr href=_links.html.href}}>{{title}}</a></p>
       <p class="details">
-        {{time-ago-in-words updated_at view.clock.pulse}}
+        {{view 'relative-time' time=updated_at}}
         <br>{{dashEventType}} in {{head.repo.name}}</p>
     </div>
   </div>

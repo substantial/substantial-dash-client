@@ -1,11 +1,11 @@
 <h2>Upcoming</h2>
 
 {{#each contents}}
-  {{#view view.hotnessView time=starts_at}}
+  {{#view 'event-hotness' time=starts_at}}
     <div class="feed-event">
       <p>{{summary}}</p>
       <p class="details">
-        {{time-ago-in-words starts_at view.clock.pulse}}
+        {{view 'relative-time' time=starts_at}}
         {{#if location}}at {{location}}{{/if}}</p>
     </div>
   {{/view}}
