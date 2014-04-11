@@ -1,7 +1,7 @@
 var RelativeTimeView = Ember.View.extend({
 
   tagName: 'time',
-  template: Ember.Handlebars.compile('{{view.timeInWords}}'),
+  templateName: 'relative-time',
   pulseBinding: 'clock.pulse',
 
   time: null,
