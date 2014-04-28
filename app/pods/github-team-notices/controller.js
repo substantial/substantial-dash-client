@@ -18,8 +18,9 @@ var GithubTeamNoticesController = Ember.ArrayController.extend(BayeuxSubscriber,
 
   updatePullRequests: function(items) {
     var contents = this.get("contents");
-    if (!Ember.isEmpty(items)) {
-
+    if (Ember.isEmpty(items)) {
+      contents.clear();
+    } else {
       // Remove items that have disappeared.
       var itemsToRemove = [];
       contents.forEach(function(existingItem) {
