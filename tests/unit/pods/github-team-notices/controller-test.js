@@ -47,7 +47,7 @@ test('it updates existing contents', function() {
     ']}';
   this.subject().send('receiveEvent', data);
   equal(this.subject().get('contents.1.title'), 'Make The Logo Bigger');
-  var data = '{ "pull_requests": ['+
+  data = '{ "pull_requests": ['+
       '{ '+
         '"id": "554", '+
         '"head": { "repo": { "name": "project-foobar" }}, '+
@@ -76,7 +76,7 @@ test('it adds new contents', function() {
     ']}';
   this.subject().send('receiveEvent', data);
   equal(this.subject().get('contents.length'), 1);
-  var data = '{ "pull_requests": ['+
+  data = '{ "pull_requests": ['+
       '{ '+
         '"id": "554", '+
         '"head": { "repo": { "name": "project-foobar" }}, '+
