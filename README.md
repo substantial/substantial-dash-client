@@ -47,9 +47,8 @@ Start the auto-reloading dev server at http://0.0.0.0:8000
 
 *Breaking change warning: These locations are subject to change as we eventually extract widgets into independently installable components/pods.*
 
-* [app/templates/index.hbs](https://github.com/substantial/substantial-dash-client/blob/master/app/templates/index.hbs), the main widget layout
-* [app/components](https://github.com/substantial/substantial-dash-client/tree/master/app/components), each widget's code
-* [app/templates/components](https://github.com/substantial/substantial-dash-client/tree/master/app/templates/components), each widget's template
-* [app/styles/app.css.scss](https://github.com/substantial/substantial-dash-client/blob/master/app/styles/app.css.scss), all style code
+* [app/templates/index.hbs](https://github.com/substantial/substantial-dash-client/blob/master/app/templates/index.hbs), the main Dashboard UI layout
+* [app/pods](https://github.com/substantial/substantial-dash-client/tree/master/app/pods), each widget's controller, view, template, & styles together
+* [app/initializers](https://github.com/substantial/substantial-dash-client/tree/master/app/initializers), services available/used across the app
 
 The EAK [Getting Started guide](http://iamstef.net/ember-app-kit/guides/getting-started.html) offers deeper insight into how this Ember.js application is built.
