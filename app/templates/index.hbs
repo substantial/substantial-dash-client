@@ -1,6 +1,11 @@
 {{#if auth.apiKey}}
 
-  <div class="app-meta">{{auth.userName}} <i class="fa fa-user"></i></div>
+  <div class="app-meta">
+    <i class="fa fa-user"></i> {{auth.userName}}
+    <a title="Logout" {{bind-attr href=auth.logoutUrl}}>
+      <i class="fa fa-sign-out"></i>
+    </a>
+  </div>
 
   <div class="gridster">
     <ul>
